@@ -90,6 +90,7 @@ fn main() {
                 event: WindowEvent::CloseRequested,
                 ..
             } => {
+                //mpv.pause().unwrap();
                 *control_flow = ControlFlow::Exit;
             }
             Event::UserEvent(UserEvent::RedrawRequested) => {
@@ -119,7 +120,7 @@ fn main() {
                 if let Some(render_context) = &render_context {
                     let (width, height) = display.get_framebuffer_dimensions();
                     render_context
-                        .render::<Display>(0, width as _, height as _, true)
+                        .render::<Display>(0, width as _, height as _, true, false)
                         .expect("Failed to draw on glutin window");
                     display.swap_buffers().unwrap();
                 }

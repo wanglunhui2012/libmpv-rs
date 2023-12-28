@@ -338,8 +338,9 @@ impl RenderContext {
     /// * `flip` - Whether to draw the image upside down. This is needed for OpenGL because
     ///            it uses a coordinate system with positive Y up, but videos use positive
     ///            Y down.
-    pub fn render<GLContext>(&self, fbo: i32, width: i32, height: i32, flip: bool) -> Result<()> {
-        let mut raw_params: Vec<mpv_render_param> = Vec::with_capacity(3);
+    /// * `skip_rendering` - Use to skip rendering.
+    pub fn render<GLContext>(&self, fbo: i32, width: i32, height: i32, flip: bool, skip_rendering: bool) -> Result<()> {
+        let mut raw_params: Vec<mpv_render_param> = Vec::with_capacity(4);
         let mut raw_ptrs: HashMap<*const c_void, DeleterFn> = HashMap::new();
 
         let raw_param: mpv_render_param =
@@ -348,6 +349,9 @@ impl RenderContext {
         raw_params.push(raw_param);
         let raw_param: mpv_render_param = RenderParam::<GLContext>::FlipY(flip).into();
         raw_ptrs.insert(raw_param.data, free_void_data::<i32>);
+        raw_params.push(raw_param);
+        let raw_param: mpv_render_param = RenderParam::<GLContext>::SkipRendering(skip_rendering).into();
+        raw_ptrs.insert(raw_param.data, free_void_data::<bool>);
         raw_params.push(raw_param);
         // the raw array must end with type = 0
         raw_params.push(mpv_render_param {
