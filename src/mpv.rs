@@ -407,6 +407,15 @@ impl MpvInitializer {
             })
         })
     }
+
+    pub fn set_option_string(&self, name: &str, data: &str) -> Result<()>{
+        let name = CString::new(name)?;
+        let data = CString::new(data)?;
+
+        mpv_err((), unsafe {
+            libmpv_sys::mpv_set_option_string(self.ctx, name.as_ptr(), data.as_ptr())
+        })
+    }
 }
 
 /// The central mpv context.
