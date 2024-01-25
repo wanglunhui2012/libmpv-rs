@@ -70,6 +70,8 @@ fn main() {
 
     let mut ev_ctx = mpv.create_event_context();
 
+    mpv.request_log_messages("debug").unwrap();
+
     ev_ctx.disable_deprecated_events().unwrap();
     let event_proxy = events_loop.create_proxy();
     render_context.set_update_callback(move || {

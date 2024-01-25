@@ -862,4 +862,13 @@ impl Mpv {
     pub fn subtitle_seek_backward(&self) -> Result<()> {
         self.command("sub-seek", &["-1"])
     }
+
+    pub fn request_log_messages(&self, min_level: &str) -> Result<()> {
+        let min_level = CString::new(min_level)?;
+
+        mpv_err((), unsafe {
+            libmpv_sys::mpv_request_log_messages(self.ctx.as_ptr(), min_level.as_ptr())
+        })
+    }
+
 }
