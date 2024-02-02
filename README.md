@@ -24,3 +24,12 @@ mv /Users/wanglunhui/Other/New/libmpv-rs/libmpv.dylib /Users/wanglunhui/Other/Ne
 # 修改名称
 install_name_tool -id /Users/wanglunhui/Other/New/libmpv-rs/libplayer.dylib /Users/wanglunhui/Other/New/libmpv-rs/libplayer.dylib
 ```
+
+```bash
+copy "C:\Program Files\mpv.net\libmpv-2.dll" "D:\libmpv-rs"
+move "D:\libmpv-rs\libmpv-2.dll" "D:\libmpv-rs\player.dll"
+D:
+cd libmpv-rs
+CALL "D:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Auxiliary\Build\vcvars64.bat" x64
+lib /def:player.def /name:player.dll /out:player.lib /MACHINE:X64
+```

@@ -4,3 +4,7 @@
 Cargo.lock
 .idea
 libplayer.dylib
+player.def
+player.dll
+player.exp
+player.lib
