@@ -29,7 +29,7 @@ fn main() {
     )
     .expect("Couldn't find pregenerated bindings!");
 
-    println!("cargo:rustc-link-lib=mpv");
+    println!("cargo:rustc-link-lib=player");
 }
 
 #[cfg(feature = "use-bindgen")]
@@ -50,5 +50,5 @@ fn main() {
         .write_to_file(out_path.join("bindings.rs"))
         .expect("Couldn't write bindings!");
 
-    println!("cargo:rustc-link-lib=mpv");
+    println!("cargo:rustc-link-lib=player");
 }

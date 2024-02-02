@@ -13,3 +13,14 @@ To run an example, execute `cargo run [--release] --example x -- test-data/speec
 
 # Contributing
 All pull requests/issues welcome.
+
+```bash
+cp /opt/homebrew/Cellar/mpv/0.37.0_1/lib/libmpv.dylib /Users/wanglunhui/Other/New/libmpv-rs/libmpv.dylib
+# 查看名称
+otool -l /Users/wanglunhui/Other/New/libmpv-rs/libmpv.dylib | fgrep -A2 LC_ID_DYLIB
+
+mv /Users/wanglunhui/Other/New/libmpv-rs/libmpv.dylib /Users/wanglunhui/Other/New/libmpv-rs/libplayer.dylib
+
+# 修改名称
+install_name_tool -id /Users/wanglunhui/Other/New/libmpv-rs/libplayer.dylib /Users/wanglunhui/Other/New/libmpv-rs/libplayer.dylib
+```

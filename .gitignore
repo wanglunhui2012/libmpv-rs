@@ -3,3 +3,4 @@
 /mpv-sys/target
 Cargo.lock
 .idea
+libplayer.dylib
